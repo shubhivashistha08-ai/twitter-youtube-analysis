@@ -242,15 +242,25 @@ st.markdown("---")
 # TWITTER ANALYTICS PAGE
 # ============================================
 if page == "🐦 Twitter Analytics":
-    
-   refresh_clicked = st.button("🔄 Refresh Twitter Data")
 
+    #automated fetching 
+    #with st.spinner("🔄 Fetching Twitter data..."):
+    #twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
+
+if page == "🐦 Twitter Analytics":
+
+    # Automated fetching (commented out)
+    # with st.spinner("🔄 Fetching Twitter data..."):
+    #     twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
+
+    refresh_clicked = st.button("🔄 Refresh Twitter Data")
+    
     if refresh_clicked or 'twitter_df' not in st.session_state:
         with st.spinner("Fetching Twitter data..."):
             twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
             st.session_state['twitter_df'] = twitter_df
-else:
-    twitter_df = st.session_state['twitter_df']
+    else:
+        twitter_df = st.session_state['twitter_df']
     
     if not twitter_df.empty:
         # Process data
@@ -258,7 +268,6 @@ else:
         twitter_df['flavors'] = twitter_df['text'].apply(lambda x: extract_flavor_mentions(x, OREO_FLAVORS))
         twitter_df['date'] = pd.to_datetime(twitter_df['created_at']).dt.date
         twitter_df['month'] = pd.to_datetime(twitter_df['created_at']).dt.to_period('M')
-        
         # ============================================
         # EXECUTIVE SUMMARY - COMPACT
         # ============================================
