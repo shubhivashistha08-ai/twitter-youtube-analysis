@@ -243,16 +243,6 @@ st.markdown("---")
 # ============================================
 if page == "🐦 Twitter Analytics":
 
-    #automated fetching 
-    #with st.spinner("🔄 Fetching Twitter data..."):
-    #twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
-
-if page == "🐦 Twitter Analytics":
-
-    # Automated fetching (commented out)
-    # with st.spinner("🔄 Fetching Twitter data..."):
-    #     twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
-
     refresh_clicked = st.button("🔄 Refresh Twitter Data")
     
     if refresh_clicked or 'twitter_df' not in st.session_state:
@@ -268,6 +258,7 @@ if page == "🐦 Twitter Analytics":
         twitter_df['flavors'] = twitter_df['text'].apply(lambda x: extract_flavor_mentions(x, OREO_FLAVORS))
         twitter_df['date'] = pd.to_datetime(twitter_df['created_at']).dt.date
         twitter_df['month'] = pd.to_datetime(twitter_df['created_at']).dt.to_period('M')
+        
         # ============================================
         # EXECUTIVE SUMMARY - COMPACT
         # ============================================
@@ -613,7 +604,6 @@ elif page == "📺 YouTube Analytics":
     
     else:
         st.warning("⚠️ No YouTube data found. Please check API credentials or try again later.")
-
 # ============================================
 # AUTO-REFRESH (Bottom of page)
 # ============================================
