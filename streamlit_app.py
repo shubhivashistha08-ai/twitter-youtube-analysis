@@ -602,22 +602,28 @@ elif page == "📺 YouTube Analytics":
 # ============================================
 # AUTO-REFRESH (Bottom of page)
 # ============================================
+#st.markdown("---")
+#st.markdown("### 🔄 Auto-Refresh Settings")
+#col1, col2, col3 = st.columns([1, 1, 2])
+#with col1:
+ #   auto_refresh = st.checkbox("Enable Auto-Refresh", value=False)
+
+#with col2:
+ #   refresh_interval = st.slider("Interval (seconds)", 30, 300, 120)
+
+#if auto_refresh:
+ #   st.info(f"🔄 Dashboard will refresh every {refresh_interval} seconds")
+  #  time.sleep(refresh_interval)
+   # st.rerun() 
+
+# ============================================
+# Manual-REFRESH (Bottom of page)
+# ============================================
 st.markdown("---")
-st.markdown("### 🔄 Auto-Refresh Settings")
+refresh_clicked = st.button("🔄 Refresh Data")
 
-col1, col2, col3 = st.columns([1, 1, 2])
-
-with col1:
-    auto_refresh = st.checkbox("Enable Auto-Refresh", value=False)
-
-with col2:
-    refresh_interval = st.slider("Interval (seconds)", 30, 300, 120)
-
-if auto_refresh:
-    st.info(f"🔄 Dashboard will refresh every {refresh_interval} seconds")
-    time.sleep(refresh_interval)
-    st.rerun()
-
+if refresh_clicked:
+    st.experimental_rerun()
 # ============================================
 # FOOTER
 # ============================================
