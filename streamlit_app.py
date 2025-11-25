@@ -243,8 +243,14 @@ st.markdown("---")
 # ============================================
 if page == "🐦 Twitter Analytics":
     
-    with st.spinner("🔄 Fetching Twitter data..."):
-        twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
+   refresh_clicked = st.button("🔄 Refresh Twitter Data")
+
+    if refresh_clicked or 'twitter_df' not in st.session_state:
+        with st.spinner("Fetching Twitter data..."):
+            twitter_df = fetch_twitter_data(query, TWITTER_BEARER_TOKEN, max_results=100)
+            st.session_state['twitter_df'] = twitter_df
+else:
+    twitter_df = st.session_state['twitter_df']
     
     if not twitter_df.empty:
         # Process data
