@@ -624,11 +624,11 @@ elif page == "📺 YouTube Analytics":
 # ============================================
 # Manual-REFRESH (Bottom of page)
 # ============================================
-st.markdown("---")
-refresh_clicked = st.button("🔄 Refresh Data")
+#st.markdown("---")
+#refresh_clicked = st.button("🔄 Refresh Data")
 
-if refresh_clicked:
-    st.experimental_rerun()
+#if refresh_clicked:
+#    st.experimental_rerun()
 # ============================================
 # FOOTER
 # ============================================
